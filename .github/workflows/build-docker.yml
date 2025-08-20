@@ -1,0 +1,26 @@
+name: Build PostgreSQL+Extensions Images
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pg_version: [ '15', '16.4', '17' ]
+    permissions:
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          build-args: |
+            PG_VERSION=${{ matrix.pg_version }}
+          tags: ghcr.io/${{ github.repository }}:pg${{ matrix.pg_version }}

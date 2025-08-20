@@ -6,3 +6,4 @@ regression.*
 
 # Generated subdirectories
 /results/
+.crush/
