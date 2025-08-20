@@ -2,7 +2,7 @@ name: Build PostgreSQL+Extensions Images
 
 on:
   push:
-    branches: [ main, master ]  # ← Triggers on both main/master
+    branches: [ main, master ]
 
 jobs:
   build:
@@ -33,4 +33,4 @@ jobs:
           push: true
           build-args: |
             PG_VERSION=${{ matrix.pg_version }}
-          tags: ghcr.io/${{ github.repository }}:pg${{ matrix.pg_version }}
+          tags: ghcr.io/${{ github.repository_owner }}/postgres-extensions:pg${{ matrix.pg_version }}
